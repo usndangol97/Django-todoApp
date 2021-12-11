@@ -1,0 +1,15 @@
+{% extends 'todoapp/base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-popup">
+            <form method="post" class="form-container">
+                {% csrf_token %}
+                <p><b> Are you sure you want to delete "{{ object }}"? </b></p>
+                <input type="submit" class="btn btn-success" value="Confirm">
+                <a href="{% url 'todoapp:home' %}" class="btn btn-danger">Cancel </a>
+            </form>
+        </div>
+    </div>
+
+{% endblock body %}

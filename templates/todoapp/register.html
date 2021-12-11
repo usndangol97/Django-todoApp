@@ -1,0 +1,18 @@
+{% extends 'todoapp/base.html' %}
+
+{% block body %}
+    <div class="container">
+        {% if registered %}
+            <h1>Thank you for Registering!!</h1>
+            <a href="{% url 'todoapp:home' %}">Home</a>
+        {% else %}
+            <h1>Fill the form:</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-success" value="register">
+            </form>
+        {% endif  %}
+    </div>
+    
+{% endblock %}

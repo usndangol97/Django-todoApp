@@ -1,0 +1,29 @@
+{% extends 'todoapp/base.html' %}
+
+{% block body %}
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">{{ tasks.task_name }}</h1>
+            <p>
+                Due Date: {{ tasks.due_date }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                {% if tasks.is_completed == True %}
+                  Status: <i class="far fa-check-square"></i> Completed &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                {% else %}
+                  Status: <i class="far fa-square"></i> Completed &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                {% endif %}
+                Priority: {{ tasks.priority }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+              </p>
+            <hr class="my-4">
+            <h4>Notes: </h4>        
+            <h2 class="lead">{{ tasks.notes }}</h2>
+            
+        </div>
+        <p class="lead">
+            <a class="btn btn-primary" href="{% url 'todoapp:home' %}">Back</a>            
+            <a href="{% url 'todoapp:complete' tasks.id %}" class="btn btn-success"><i class="fas fa-check"></i></a>
+            <a href="{% url 'todoapp:edit' tasks.id %}" class="btn btn-info" ><i class="fas fa-pen"></i></a>
+        </p>
+    </div>
+    
+{% endblock %}

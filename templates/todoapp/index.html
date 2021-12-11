@@ -1,0 +1,33 @@
+{% extends 'todoapp/base.html' %}
+
+{% block body %}
+  <div class="container">
+    {% for task in task_list %}
+      <br> 
+        <div class="card">
+            <div class="card-header">
+              <h4>{{ task.task_name }}</h4>
+            </div>
+            <div class="card-body">
+              <!-- <h5 class="card-text">{{ task.due_date }}</h5>
+              <h5 class="card-text">{{ task.status }}</h5>
+              <h5 class="card-text">{{ task.priority }}</h5> -->
+              <p>
+                Due Date: {{ task.due_date }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                {% if task.is_completed == True %}
+                  Status: <i class="far fa-check-square"></i> Completed &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                {% else %}
+                  Status: <i class="far fa-square"></i> Completed &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                {% endif %}
+                Priority: {{ task.priority }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+              </p>
+              <a href="{% url 'todoapp:details' task.id %}" class="btn btn-primary">Details</a>
+              <a href="{% url 'todoapp:delete' task.id %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+        
+    {% endfor %}
+    <br>
+    <a href="{% url 'todoapp:addTask' %}" class="btn btn-success" >Add Task</a>
+  </div>
+{% endblock %}
